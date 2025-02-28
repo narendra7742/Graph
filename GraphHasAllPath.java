@@ -57,6 +57,7 @@ public class GraphHasAllPath{
 		multiSolver(Graph, src, dest, visited, wait, k, src+"", 0);
 
 		System.out.println("Smallest Path = "+sPath+" @"+sPathWt); 
+		System.out.println("Largest Path = "+lPath+" @"+lPathWt);
 
 
 	}
@@ -66,6 +67,26 @@ public class GraphHasAllPath{
 			if(wsf < sPathWt){
 				sPathWt = wsf;
 				sPath = psf;
+			}
+			if(wsf > lPathWt){
+				lPathWt = wsf;
+				lPath = psf;
+			}
+			if(wsf >c && wsf <cPathWt){
+				cPathWt = wsf;
+				cPath = psf;
+			}
+			if(wsf < c && wsf > fPathWT){
+				fPathWT = wsf;
+				fPath = psf;
+			}
+			if(pq.size() <k){
+				pq.add(new Pair(wsf, psf));
+			}else{
+				if(wsf > pq.peek().wsf){
+					pq.remove();
+					pq.add(new Pair(wsf, psf));
+				}
 			}
 
 			return;
